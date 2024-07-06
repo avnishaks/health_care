@@ -10,12 +10,9 @@ import { useState } from "react"
 import { UserFormValidation } from "@/lib/validation"
 import SubmitButton from "../SubmitButton"
 import { useRouter } from "next/navigation"
+import { createUser } from "@/lib/actions/patient.action"
  
-const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-})
+
  
 export default function PaitentForms() {
   const router = useRouter();
@@ -31,20 +28,25 @@ export default function PaitentForms() {
   });
 
   const onSubmit = async (values: z.infer<typeof UserFormValidation>) => {
+
+    console.log("onSubmit button is clicked")
+
     setIsLoading(true);
 
     try {
-      const user = {
+      const users = {
         name: values.name,
         email: values.email,
         phone: values.phone,
       };
 
-      // const newUser = await createUser(user);
+      console.log("The value of user filled in the form is " + JSON.stringify(users))
 
-      // if (newUser) {
-      //   router.push(`/patients/${newUser.$id}/register`);
-      // }
+      const newUser = await createUser(users);
+
+      if (newUser) {
+        router.push(`/patients/${newUser.$id}/register`);
+      }
     } catch (error) {
       console.log(error);
     }
