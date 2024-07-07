@@ -31,12 +31,12 @@ export default function RegisterForms({ user }: { user: User }) {
     const form = useForm<z.infer<typeof PatientFormValidation>>({
         resolver: zodResolver(PatientFormValidation),
         defaultValues: {
-          ...PatientFormDefaultValues,
-          name: user.name,
-          email: user.email,
-          phone: user.phone,
+            ...PatientFormDefaultValues,
+            name: user.name,
+            email: user.email,
+            phone: user.phone,
         },
-      });
+    });
 
     const onSubmit = async (values: z.infer<typeof PatientFormValidation>) => {
         setIsLoading(true);
@@ -86,6 +86,7 @@ export default function RegisterForms({ user }: { user: User }) {
             const newPatient = await registerPatient(patient);
 
             if (newPatient) {
+                form.reset();
                 router.push(`/patient/${user.$id}/new-appointment`);
             }
         } catch (error) {
