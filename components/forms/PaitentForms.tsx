@@ -45,7 +45,7 @@ export default function PaitentForms() {
       const newUser = await createUser(users);
 
       if (newUser) {
-        router.push(`/patients/${newUser.$id}/register`);
+        router.push(`/patient/${newUser.$id}/register`);
       }
     } catch (error) {
       console.log(error);
