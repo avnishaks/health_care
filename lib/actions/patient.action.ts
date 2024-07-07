@@ -4,16 +4,16 @@ import { ID , Query  } from "node-appwrite";
 import {InputFile} from "node-appwrite/file";
 
 import {
-  BUCKET_ID,
-  DATABASE_ID,
-  ENDPOINT,
-  PATIENT_COLLECTION_ID,
-  PROJECT_ID,
-  databases,
-  storage,
-  users,
-} from "../appwrite.config";
-import { parseStringify } from "../utils";
+    BUCKET_ID,
+    DATABASE_ID,
+    ENDPOINT,
+    PATIENT_COLLECTION_ID,
+    PROJECT_ID,
+    databases,
+    storage,
+    users,
+  } from "../appwrite.config";
+  import { parseStringify } from "../utils";
 
 // CREATE APPWRITE USER
 export const createUser = async (user: CreateUserParams) => {
@@ -109,3 +109,4 @@ export const getPatient = async (userId: string) => {
     );
   }
 };
+
